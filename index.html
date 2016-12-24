@@ -1,0 +1,37 @@
+<html>
+    <body>
+        <canvas height="600px" width="600px" id="canvas">
+            你的浏览器不支持canvas标签，请更新最新版Chrome
+        </canvas>
+
+        <!-- 图形库框架主体 -->
+        <script src="./gengineUI.js"></script>
+        <!-- 基本图形库 -->
+        <script src="./BasicCircle.js"></script>
+        <script src="./BasicRect.js"></script>
+        <!-- 画笔工具 -->
+        <script src="./MoverTool.js"></script>
+        <script src="./CircleMakerTool.js"></script>
+        <script src="./RectMakerTool.js"></script>
+
+        <script>
+            var canvas = document.getElementById('canvas');
+            var manager = new Manager(canvas);
+            manager.usingTool = new MoverTool(manager);
+
+            manager.addObj(new BasicCircle([300, 300], 100));
+            manager.addObj(new BasicCircle([200, 300], 50));
+            manager.addObj(new BasicCircle([100, 100], 20));
+
+            var drawer = manager.callback();
+            setInterval(drawer, 1000/60.0);
+            window.requestAnimationFrame(drawer);
+        </script>
+
+        <!-- 工具选择栏 -->
+        <input type="radio" name="tool" onclick="manager.usingTool = new MoverTool(manager)" checked="checked">移动工具</option>
+        <input type="radio" name="tool" onclick="manager.usingTool = new CircleMakerTool(manager)">画圆工具</option>
+        <input type="radio" name="tool" onclick="manager.usingTool = new RectMakerTool(manager)">画框工具</option>
+    </body>
+</html>
+
