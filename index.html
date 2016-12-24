@@ -24,7 +24,7 @@
             manager.addObj(new BasicCircle([100, 100], 20));
 
             var drawer = manager.callback();
-            setInterval(drawer, 1000/60.0);
+            setInterval(drawer, 1000/60.0); // max fps = 60
             window.requestAnimationFrame(drawer);
         </script>
 
